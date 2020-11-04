@@ -1,13 +1,14 @@
 /* ASSIGNMENT
 Creare un array di oggetti: ogni oggetto descriverà una bici da corsa
 con le seguenti proprietà: nome e peso.
-Stampare a schermo la bici con peso minore.
+Stampare a schermo la bici con peso minore
+utilizzando destructuring e template literal.
 Utilizzare nuova sintassi di JS ES6.
 */
 
 $(document).ready(function () {
   // Creating the racing bikes array (array of objects)
-  var racing_bikes = [
+  let racing_bikes = [
     {
       'name' : 'Alchemy Atlas',
       'weight' : 8, //Kilograms
@@ -37,22 +38,53 @@ $(document).ready(function () {
       'weight' : 6.8, //Kilograms
     },
   ]
-  console.log('The array of racing bikes is: ' , racing_bikes);
-  console.log('');
+  console.log(
+  `
+  The array of racing bikes is: ${racing_bikes}
+  `
+  );
 
-  // ---------------- Finding out the bike highest weight ----------------
-  var lowest_weight = racing_bikes[0].weight;
-  console.log(racing_bikes[0].name + ':' , lowest_weight , 'kilograms.');
-  // Scanning the array of bikes to compare the weights
-  for (var i = 1; i < racing_bikes.length; i++) {
-    var current_weight = racing_bikes[i].weight;
-    console.log(racing_bikes[i].name + ':' , current_weight, 'kilograms.');
+  // ---------------- Finding out the bike lowest weight ----------------
+
+  // Assigning the first bike as the lightest bike
+  let lightest_bike = racing_bikes[0];
+
+  // Scanning the array of bikes to compare the weights (with "forEach")
+  racing_bikes.forEach((bike) => {
+    // Checking for the lightest bike
+    if(bike.weight < lightest_bike.weight) {
+      lightest_bike = bike;
+    }
+  });
+
+  // Printing in console the results (with template literal)
+  const {name, weight} = lightest_bike;
+  console.log(
+  `
+  The bike with the lowest weight is "${name}" weighing ${weight} kilograms.
+  `
+  );
+
+  // Printing on screen the results (with template literal)
+  // TO BE DONE
+
+  // VECCHIO CODICE ESERCIZIO SENZA ES6 DA INTEGRARE AL NUOVO (SE NECESSARIO)
+
+  /*
+  for (let i = 1; i < racing_bikes.length; i++) {
+    var {weight} = racing_bikes[i]
+    let current_weight = weight;
+
     // Finding the lowest weight
     if (current_weight < lowest_weight) {
       lowest_weight = current_weight;
-      var lowest_weight_bike = racing_bikes[i].name;
+      // var lowest_weight_bike = racing_bikes[i].name;
+      var {name} = racing_bikes[i];
     }
   }
+  */
+
+  /*
   console.log('');
   // Check for same weight bikes (only if their weight is the lowest weight)
   var same_weight_bikes = [];
@@ -70,4 +102,6 @@ $(document).ready(function () {
     // If the array of same weight bikes has only one element, there is only one bike with that lowest weight
     console.log('The bike with the lowest weight is: ' + lowest_weight_bike + ' weighing' , lowest_weight, 'kilograms.');
   }
+  */
+
 });
