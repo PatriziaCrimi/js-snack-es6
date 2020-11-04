@@ -38,11 +38,7 @@ $(document).ready(function () {
       'weight' : 6.8, //Kilograms
     },
   ]
-  console.log(
-  `
-  The array of racing bikes is: ${racing_bikes}
-  `
-  );
+  console.log('The array of racing bikes is:' , racing_bikes);
 
   // ---------------- Finding out the bike lowest weight ----------------
 

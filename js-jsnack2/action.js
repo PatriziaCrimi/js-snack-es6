@@ -53,21 +53,22 @@ $(document).ready(function () {
   let names_final_array = [];
 
   // ******************* SOLUTION 1 - FOREACH *******************
-
   // Scanning the whole array of names (with forEach)
-  names_list.forEach((item, i) => {
-    if (i >= lowest_num && i < highest_num) {
-      names_final_array.push(names_list[i]);
+  names_list.forEach((name, index) => {
+    // Checking for the names included in the range given by the user
+    if (index >= lowest_num && index < highest_num) {
+      names_final_array.push(name);
     }
   });
-
-  /*
-  // ******************* SOLUTION 2 - FILTER *******************
-  // TO BE DONE
-  */
-
   // Print in console
   console.log('The new array containing the names included in the user\'s numbers range is: ', names_final_array);
+
+  // ******************* SOLUTION 2 - FILTER *******************
+  const names_list_filtered = names_list.filter((name, index) => {
+    return index >= lowest_num && index < highest_num;
+  });
+  // Print in console
+  console.log('The filtered array containing the names included in the user\'s numbers range is: ', names_list_filtered);
 });
 
 // ---------------------------- FUNCTIONS ----------------------------
