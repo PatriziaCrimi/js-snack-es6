@@ -53,10 +53,11 @@ $(document).ready(function () {
   ];
   console.log('The array of movies is:' , movies_list , '\n\n');
 
+  /*
+  // --------------------- SOLUTION 1 - FOREACH & FOR-IN ---------------------
+
   // Creating a copy of the movies array and adding the new property and value
   let movies_copy = [];
-
-  // --------------------- SOLUTION 1 - FOREACH & FOR-IN ---------------------
 
   // Scanning the original movies array to copy it element by element
   movies_list.forEach((movie, index) => {
@@ -77,31 +78,18 @@ $(document).ready(function () {
     // Adding "position : random letter" to every object (key : value)
     movie.position = random_letter;
   });
-
-  /*
-  // ------------ SOLUTION 2 - ADDING EACH PROPERTY : VALUE one by one ------------
-  // Scanning the original movies array to copy it element by element
-  for (let i = 0; i < movies_list.length; i++) {
-    // Generating random letter
-    var random_letter = getRndCharacter();
-    console.log('Random letter: ' + random_letter);
-    // Copying each object from the original array to its copy (one by one)
-    var single_movie_copy = {
-      // *** DOT NOTATION ***
-      title : movies_list[i].title,
-      director : movies_list[i].director,
-      year : movies_list[i].year,
-      position : random_letter,
-
-      // *** SQUARE BRACKETS NOTATION ***
-      // title : movies_list[i]['title'],
-      // director : movies_list[i]['director'],
-      // year : movies_list[i]['year'],
-      // position : random_letter,
-    }
-    movies_copy.push(single_movie_copy);
-  }
   */
+
+  // --------------------- SOLUTION 2 - MAP & REST ---------------------
+
+  // Creating the new array (with map)
+  const movies_copy = movies_list.map((movie) => {
+    const single_movie_copy = {
+      ...movie,
+      position: getRndCharacter(),
+    };
+    return single_movie_copy;
+  });
 
   console.log('\n\n The original movies array is unchanged:', movies_list , '\n\n');
   console.log('The copy of the movies array updated with the new property \'position\' and its values is: ' , movies_copy);
