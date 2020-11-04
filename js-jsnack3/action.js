@@ -3,12 +3,13 @@ A partire da un array di oggetti,
 creare una copia dell'array
 e aggiungere ai singoli elementi dell'array una nuova proprietà "position"
 che contiene una lettera casuale.
+Usiamo arrow function, map e...
 Utilizzare nuova sintassi di JS ES6.
 */
 
 $(document).ready(function () {
   // Creating an array of objects
-  var movies_list = [
+  let movies_list = [
     {
       'title' : 'Fight Club',
       'director' : 'David Fincher',
@@ -53,29 +54,29 @@ $(document).ready(function () {
   console.log('The array of movies is:' , movies_list , '\n\n');
 
   // Creating a copy of the movies array and adding the new property and value
-  var movies_copy = [];
+  let movies_copy = [];
 
-  // --------------------- SOLUTION 1 - FOR-IN ---------------------
+  // --------------------- SOLUTION 1 - FOREACH & FOR-IN ---------------------
 
   // Scanning the original movies array to copy it element by element
-  for (let i = 0; i < movies_list.length; i++) {
+  movies_list.forEach((movie, index) => {
     // Scanning every object from the original array to copy its properties and values (one by one)
-    var single_movie_copy = {};
-    for (var key in movies_list[i]) {
+    let single_movie_copy = {};
+    for (let key in movie) {
       // Creating the current property : value
-      single_movie_copy[key] = movies_list[i][key];
+      single_movie_copy[key] = movie[key];
     }
     movies_copy.push(single_movie_copy);
-  }
+  });
 
   // Scanning the copy of the movies array to add the new property and value
-  for (let i = 0; i < movies_copy.length; i++) {
+  movies_copy.forEach((movie, index) => {
     // Generating random letter (with function)
-    var random_letter = getRndCharacter();
-    console.log('Random letter: ' + random_letter);
+    let random_letter = getRndCharacter();
+    console.log(`Random letter: ${random_letter}`);
     // Adding "position : random letter" to every object (key : value)
-    movies_copy[i].position = random_letter;
-  }
+    movie.position = random_letter;
+  });
 
   /*
   // ------------ SOLUTION 2 - ADDING EACH PROPERTY : VALUE one by one ------------
