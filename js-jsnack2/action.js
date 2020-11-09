@@ -11,14 +11,6 @@ $(document).ready(function () {
   let names_list = ['William', 'Robert', 'Anne', 'Christian', 'Josephine', 'Karleen', 'Astrid', 'Clark', 'Judith'];
   // Printing in console
   console.log('The array containing the names is: ', names_list)
-  /*
-  // Template literal --> it converts my array into a string
-  console.log(
-  `
-  The array containing the names is: ${names_list}
-  `
-  );
-  */
 
   // Entering first number
   let first_num = parseInt(prompt('Please enter the first number.'));
@@ -33,7 +25,7 @@ $(document).ready(function () {
     second_num = parseInt(prompt('ERROR. You cannot enter two equal figures. Please enter a number ranging from 1 to ' + names_list.length + ' and different from ' + first_num + '.'));
     second_num = validNumber(second_num, names_list.length);
   }
-  // Print in console --> it converts numbers into strings
+  // Print in console (template literal converts numbers into strings)
   console.log(
   `
   The two numbers entered by the user are: ${first_num} and ${second_num}.
@@ -41,18 +33,22 @@ $(document).ready(function () {
   );
 
   // Checking highest and lowest number
+  let highest_num;
+  let lowest_num;
   if (first_num > second_num) {
-    var highest_num = first_num;
-    var lowest_num = second_num -1;
+    highest_num = first_num;
+    lowest_num = second_num -1;
   } else {
-    var highest_num = second_num;
-    var lowest_num = first_num -1;
+    highest_num = second_num;
+    lowest_num = first_num -1;
   }
 
   // Creating the new array containing the names included in the user's numbers range
   let names_final_array = [];
 
+
   // ******************* SOLUTION 1 - FOREACH *******************
+
   // Scanning the whole array of names (with forEach)
   names_list.forEach((name, index) => {
     // Checking for the names included in the range given by the user
@@ -62,13 +58,21 @@ $(document).ready(function () {
   });
   // Print in console
   console.log('The new array containing the names included in the user\'s numbers range is: ', names_final_array);
+  // Print on screen HTML
+  $('#results > p:last-child').text(names_final_array.join(', '));
+
 
   // ******************* SOLUTION 2 - FILTER *******************
+
   const names_list_filtered = names_list.filter((name, index) => {
     return index >= lowest_num && index < highest_num;
   });
-  // Print in console
-  console.log('The filtered array containing the names included in the user\'s numbers range is: ', names_list_filtered);
+  // Print in console (with template literal)
+  console.log(
+  `
+  The filtered array containing the names included in the user's numbers range is: ${names_list_filtered.join(', ')}.
+  `
+  );
 });
 
 // ---------------------------- FUNCTIONS ----------------------------
