@@ -84,8 +84,10 @@ $(document).ready(function () {
 
   // Creating the new array (with map)
   const movies_copy = movies_list.map((movie) => {
+    // Copying each object using the spread operator (rest parameter)
     const single_movie_copy = {
       ...movie,
+      // Adding the new property (position : random character)
       position: getRndCharacter(),
     };
     return single_movie_copy;
@@ -93,6 +95,15 @@ $(document).ready(function () {
 
   console.log('\n\n The original movies array is unchanged:', movies_list , '\n\n');
   console.log('The copy of the movies array updated with the new property \'position\' and its values is: ' , movies_copy);
+
+  // Print results on screen HTML (with template literal)
+  for (let i = 0; i < movies_copy.length; i++) {
+    $('#results').append(
+    `
+    <p>${movies_copy[i].title}, ${movies_copy[i].director}, ${movies_copy[i].year}, position: ${movies_copy[i].position}</p>
+    `
+    );
+  }
 });
 
 // ------------------------------- FUNCTIONS -------------------------------

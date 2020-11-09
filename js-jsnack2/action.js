@@ -47,7 +47,7 @@ $(document).ready(function () {
   let names_final_array = [];
 
 
-  // ******************* SOLUTION 1 - FOREACH *******************
+  // ------------------------- SOLUTION 1 - FOREACH -------------------------
 
   // Scanning the whole array of names (with forEach)
   names_list.forEach((name, index) => {
@@ -58,11 +58,11 @@ $(document).ready(function () {
   });
   // Print in console
   console.log('The new array containing the names included in the user\'s numbers range is: ', names_final_array);
-  // Print on screen HTML
+  // Print results on screen HTML
   $('#results > p:last-child').text(names_final_array.join(', '));
 
 
-  // ******************* SOLUTION 2 - FILTER *******************
+  // ------------------------- SOLUTION 2 - FILTER -------------------------
 
   const names_list_filtered = names_list.filter((name, index) => {
     return index >= lowest_num && index < highest_num;
